@@ -1,8 +1,11 @@
-package sumsar1812.github.io.todonearme;
+package sumsar1812.github.io.todonearme.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import sumsar1812.github.io.todonearme.CurrentToDoFragment;
+import sumsar1812.github.io.todonearme.HistoryFragment;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     private int tabCount;

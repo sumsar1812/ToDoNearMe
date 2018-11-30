@@ -28,16 +28,31 @@
                             <entry key="launcher">
                               <value>
                                 <PersistentState>
+                                  <option name="children">
+                                    <map>
+                                      <entry key="backgroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="80" />
+                                                <entry key="trimmed" value="true" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="128d01" />
-                                      <entry key="backgroundImage" value="E:\dev\lib\images\addHelp.png" />
+                                      <entry key="backgroundImage" value="E:\dev\lib\images\maps-icon.png" />
                                       <entry key="backgroundLayerName" value="ic_addbtn_background" />
-                                      <entry key="foregroundImage" value="E:\dev\lib\images\baseline-add_circle_outline-24px.svg" />
+                                      <entry key="foregroundImage" value="E:\dev\lib\images\maps-icon.png" />
                                       <entry key="foregroundLayerName" value="ic_addbtn_foreground" />
                                       <entry key="legacyIconShape" value="NONE" />
-                                      <entry key="outputName" value="add" />
+                                      <entry key="outputName" value="maps_icon" />
                                       <entry key="previewDensity" value="XXXHIGH" />
                                     </map>
                                   </option>
