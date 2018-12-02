@@ -37,4 +37,7 @@ public class LocListener implements LocationListener {
     public Location getLastLocation() {
         return lastLocation;
     }
+    public void setLastLocation(Location l) {
+        lastLocation = l;
+    }
 }

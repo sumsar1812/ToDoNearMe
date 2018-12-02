@@ -16,10 +16,27 @@
                             <entry key="actionbar">
                               <value>
                                 <PersistentState>
+                                  <option name="children">
+                                    <map>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="paddingPercent" value="50" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="E:\dev\lib\images\baseline-add_circle-24px.svg" />
+                                      <entry key="imageAsset" value="E:\dev\lib\images\baseline-check-24px.svg" />
+                                      <entry key="theme" value="HOLO_DARK" />
+                                      <entry key="themeColor" value="4a60e5" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -35,8 +52,19 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="80" />
+                                                <entry key="scalingPercent" value="0" />
                                                 <entry key="trimmed" value="true" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="foregroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="50" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -46,14 +74,15 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundColor" value="128d01" />
-                                      <entry key="backgroundImage" value="E:\dev\lib\images\maps-icon.png" />
-                                      <entry key="backgroundLayerName" value="ic_addbtn_background" />
-                                      <entry key="foregroundImage" value="E:\dev\lib\images\maps-icon.png" />
-                                      <entry key="foregroundLayerName" value="ic_addbtn_foreground" />
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="fbfdff" />
+                                      <entry key="backgroundImage" value="E:\dev\lib\images\icons8-checkmark-24.png" />
+                                      <entry key="backgroundLayerName" value="ic_checkmark_background" />
+                                      <entry key="foregroundImage" value="E:\dev\lib\images\baseline-arrow_back-24px.svg" />
+                                      <entry key="foregroundLayerName" value="ic_back_foreground" />
                                       <entry key="legacyIconShape" value="NONE" />
-                                      <entry key="outputName" value="maps_icon" />
-                                      <entry key="previewDensity" value="XXXHIGH" />
+                                      <entry key="outputName" value="checkmark" />
+                                      <entry key="previewDensity" value="MEDIUM" />
                                     </map>
                                   </option>
                                 </PersistentState>

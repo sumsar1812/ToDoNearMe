@@ -1,4 +1,4 @@
-package sumsar1812.github.io.todonearme;
+package sumsar1812.github.io.todonearme.services;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import sumsar1812.github.io.todonearme.Constants;
+
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -23,15 +25,6 @@ import java.util.Locale;
  */
 public class FetchAddressIntentService extends IntentService {
     protected ResultReceiver mReceiver;
-    public static final int SUCCESS_RESULT = 0;
-    public static final int FAILURE_RESULT = 1;
-    public static final String PACKAGE_NAME =
-            "com.google.android.gms.location.sample.locationaddress";
-    public static final String RECEIVER = PACKAGE_NAME + ".RECEIVER";
-    public static final String RESULT_DATA_KEY = PACKAGE_NAME +
-            ".RESULT_DATA_KEY";
-    public static final String LOCATION_DATA_EXTRA = PACKAGE_NAME +
-            ".LOCATION_DATA_EXTRA";
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
@@ -40,36 +33,41 @@ public class FetchAddressIntentService extends IntentService {
     public FetchAddressIntentService(String name) {
         super(name);
     }
-
+    public FetchAddressIntentService() {
+        super("FetchAddressIntentService");
+    }
     @Override
     protected void onHandleIntent(Intent intent) {
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         if (intent == null)
             return;
-        Location l = intent.getParcelableExtra(LOCATION_DATA_EXTRA);
-        if (l == null)
+        Location l = intent.getParcelableExtra(Constants.LOCATION_DATA_EXTRA);
+        mReceiver = intent.getParcelableExtra(Constants.RECEIVER);
+        if (l == null || mReceiver == null)
             return;
         List<Address> addresses = null;
 
         try {
-            addresses = geocoder.getFromLocation(l.getLatitude(),l.getLongitude(),1);
+            addresses = geocoder.getFromLocation(l.getLatitude(),l.getLongitude(),5);
         } catch (IOException e) {
             e.printStackTrace();
         }
         if (addresses == null || addresses.size() == 0) {
-            deliverResultToReceiver(FAILURE_RESULT,"error");
+            deliverResultToReceiver(Constants.FAILURE_RESULT,"error");
         } else {
             List<String> addressLines = new ArrayList<>();
-            for (int i = 0;i <= addresses.get(0).getMaxAddressLineIndex(); i++) {
-                addressLines.add(addresses.get(0).getAddressLine(i));
+            for (Address address : addresses) {
+                for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
+                    addressLines.add(address.getAddressLine(i));
+                }
             }
-            deliverResultToReceiver(SUCCESS_RESULT, TextUtils.join(System.lineSeparator(), addressLines));
+            deliverResultToReceiver(Constants.SUCCESS_RESULT, TextUtils.join(System.lineSeparator(), addressLines));
         }
     }
 
     private void deliverResultToReceiver(int resultCode, String message) {
         Bundle bundle = new Bundle();
-        bundle.putString(RESULT_DATA_KEY, message);
+        bundle.putString(Constants.RESULT_DATA_KEY, message);
         mReceiver.send(resultCode, bundle);
     }
 }

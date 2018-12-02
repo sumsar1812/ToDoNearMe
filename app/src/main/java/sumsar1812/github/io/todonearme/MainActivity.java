@@ -1,11 +1,10 @@
 package sumsar1812.github.io.todonearme;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
+
 import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -15,21 +14,24 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import sumsar1812.github.io.todonearme.adapter.PagerAdapter;
+import sumsar1812.github.io.todonearme.model.ToDoItem;
 
 import static android.content.pm.PackageManager.PERMISSION_DENIED;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+import static android.location.LocationManager.NETWORK_PROVIDER;
+import static sumsar1812.github.io.todonearme.Constants.CREATE_REQ_CODE;
+import static sumsar1812.github.io.todonearme.Constants.CREATE_RETURN_DATA;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private FloatingActionButton faButton;
-    private Context context;
+    private MainActivity context;
     private LocationManager locationManager;
     private int LOCATION_REQUEST = 51;
 
@@ -50,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST);
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 5, LocListener.getInstance());
+        locationManager.requestLocationUpdates(NETWORK_PROVIDER, 0, 5, LocListener.getInstance());
+        LocListener.getInstance().setLastLocation(locationManager.getLastKnownLocation(NETWORK_PROVIDER));
     }
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == LOCATION_REQUEST) {
@@ -99,11 +102,18 @@ public class MainActivity extends AppCompatActivity {
         faButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Location l = LocListener.getInstance().getLastLocation();
-                Intent intent = new Intent(context, MapsActivity.class);
-                context.startActivity(intent);
-
+                Intent intent = new Intent(context, CreateActivity.class);
+                context.startActivityForResult(intent,CREATE_REQ_CODE);
             }
         });
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CREATE_REQ_CODE) {
+                ToDoItem toDoItem = (ToDoItem) data.getExtras().get(CREATE_RETURN_DATA);
+                int i = 0;
+            }
+        }
     }
 }

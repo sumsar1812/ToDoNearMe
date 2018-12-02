@@ -9,4 +9,8 @@
     <string name="addressEditText">Address</string>
     <string name="addBtnName">Add</string>
     <string name="find_location">Find location</string>
+    <string name="no_geocoder_available">"Can't find address currently"</string>
+    <string name="new_to_do_title">New to do</string>
+    <string name="confirm_selection_maps">Select location</string>
+    <string name="NA">N/A</string>
 </resources>
